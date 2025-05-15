@@ -1,0 +1,27 @@
+
+
+1 - Separar as responsabilidades
+    cada componente deve ter responsabilidade unica
+
+        a - Component dialog deve ser único
+        b - Component dialog deve aceitar outros components
+            ex. Component Dialog -> Component New File || New Folder || Open file 
+
+        c - Novo component card (click, controles customizados e reutilizacao)
+        d - Novo component breadcrumb ? (não é reutilizavel, nao há outros controles customizados...), (talvez isolar os controles)
+        e - Novo component table (controles especificos, layout customizado)
+
+
+ - Criar slots
+ - Criar menu / Nav
+ - Calcular size folder
+ - Download file
+
+
+
+ - Criar API
+
+
+
+ - Sistema nao é sistema sem resultado
+
