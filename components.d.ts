@@ -8,11 +8,14 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
-    copy: typeof import('./src/components/dialog/NewFileDialog copy.vue')['default']
-    Dialog: typeof import('./src/components/dialog/Dialog.vue')['default']
     Home: typeof import('./src/components/Home.vue')['default']
     NewFileDialog: typeof import('./src/components/dialog/NewFileDialog.vue')['default']
     NewFolderDialog: typeof import('./src/components/dialog/NewFolderDialog.vue')['default']
     OpenFileDialog: typeof import('./src/components/dialog/OpenFileDialog.vue')['default']
+    Root: typeof import('./src/components/Root.vue')['default']
+    RouterLink: typeof import('vue-router')['RouterLink']
+    RouterView: typeof import('vue-router')['RouterView']
+    Starred: typeof import('./src/components/pages/Starred.vue')['default']
+    StatisticsNavDrawer: typeof import('./src/components/drawer/StatisticsNavDrawer.vue')['default']
   }
 }

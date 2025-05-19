@@ -26,14 +26,21 @@ const toggle = (value: boolean) => {
 
 const newFile = () => {
 
-  let files = JSON.parse(localStorage.getItem('files') || '[]')
+  const files = JSON.parse(localStorage.getItem('files') || '[]')
+  let fileName = file.value.name
+
+  // if (fileExists(files, file.value)) {
+  //   fileName = fileName.split('.')[0] + "(Copy)." + fileName.split('.')[1];
+  // }
 
   const { name, size, type } = file.value || {}
   let newFile = {
+    // name: fileName,
     name,
     size,
     type,
-    folder: props.currentFolder
+    folder: props.currentFolder,
+    starred: false
   }
 
   files.push(newFile)
@@ -42,6 +49,10 @@ const newFile = () => {
   file.value = undefined
   emit('newFileResponse')
 }
+
+// const fileExists = (files: Array<[]>, file: File) => {
+//     return JSON.parse(localStorage.getItem('files') || '[]').filter((item: any) => item.folder === props.currentFolder && item.name == file.name) !== null && [] ? true : false
+// }
 
 </script>
 

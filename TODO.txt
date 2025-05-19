@@ -16,8 +16,11 @@
  - Criar menu / Nav
  - Calcular size folder
  - Download file
-
-
+ - Tratar diferentes tipos de arquivos
+ - Estatisticas de uso de disco
+ - Pinia
+ - Layout
+ - Websocket para nao cascatear v-model
 
  - Criar API
 

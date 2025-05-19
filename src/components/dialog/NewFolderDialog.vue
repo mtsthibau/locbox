@@ -17,7 +17,7 @@ const props = defineProps({
   }
 })
 
-const emit = defineEmits(['update:modelValue', 'response'])
+const emit = defineEmits(['update:modelValue', 'newFolderResponse'])
 
 const folderName = ref('')
 const newFolderError = ref('')
@@ -43,7 +43,7 @@ const newFolder = () => {
     folderName.value = ''
     newFolderError.value = ''
     toggle(false)
-    emit('response')
+    emit('newFolderResponse')
   } else {
     newFolderError.value = "Please enter a folder name"
   }
