@@ -17,7 +17,11 @@ const toggle = (value: boolean) => {
 
 <template>
 
-  <v-navigation-drawer :model-value="modelValue" :location="$vuetify.display.mobile ? 'bottom' : undefined" temporary>
+  <v-navigation-drawer
+    :model-value="modelValue"
+    :location="$vuetify.display.mobile ? 'bottom' : undefined"
+    temporary
+  >
 
     <slot></slot>
 

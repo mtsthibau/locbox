@@ -46,9 +46,18 @@ onMounted(() => {
   <v-card>
     <v-layout>
 
-      <v-app-bar color="default" @click.stop="drawer = !drawer">
+      <v-app-bar
+        color="default"
+        @click.stop="drawer = !drawer"
+      >
         <v-app-bar-nav-icon variant="text" />
-        <v-img class="mx-1" max-height="100" max-width="100" contain src="@/assets/sisloc.png" />
+        <v-img
+          class="mx-1"
+          max-height="100"
+          max-width="100"
+          contain
+          src="@/assets/sisloc.png"
+        />
         <v-toolbar-title>
           <span class="text-orange-darken-3"><strong>LocBox</strong></span>
         </v-toolbar-title>
@@ -57,10 +66,24 @@ onMounted(() => {
       <statistics-nav-drawer v-model="drawer">
         <template v-slot:default>
 
-          <v-list density="compact" nav class="mb-3">
-            <v-list-item prepend-icon="mdi-home" title="/ Root" value="shared" to="/"></v-list-item>
+          <v-list
+            density="compact"
+            nav
+            class="mb-3"
+          >
+            <v-list-item
+              prepend-icon="mdi-home"
+              title="/ Root"
+              value="shared"
+              to="/"
+            ></v-list-item>
 
-            <v-list-item prepend-icon="mdi-star" title="Starred" value="starred" to="/starred"></v-list-item>
+            <v-list-item
+              prepend-icon="mdi-star"
+              title="Starred"
+              value="starred"
+              to="/starred"
+            ></v-list-item>
           </v-list>
 
           <!-- <v-divider class="mb-5"></v-divider>
@@ -73,7 +96,11 @@ onMounted(() => {
 
           <v-row class="pa-5 mb-5">
             <h5 class="mb-2">Disk Usage</h5>
-            <v-progress-linear v-model="diskUsage" color="orange-darken-3" height="25">
+            <v-progress-linear
+              v-model="diskUsage"
+              color="orange-darken-3"
+              height="25"
+            >
               <strong> {{ diskUsage }}% </strong>
             </v-progress-linear>
           </v-row>
@@ -83,13 +110,21 @@ onMounted(() => {
 
         <template v-slot:append>
           <div class="px-2 py-5 my-5">
-            <v-btn block variant="tonal" prepend-icon="mdi-trash-can-outline" color="orange-darken-3"
-              @click="clearBoxConfirmation = !clearBoxConfirmation">
+            <v-btn
+              block
+              variant="tonal"
+              prepend-icon="mdi-trash-can-outline"
+              color="orange-darken-3"
+              @click="clearBoxConfirmation = !clearBoxConfirmation"
+            >
               clear your box
             </v-btn>
           </div>
 
-          <v-dialog v-model=clearBoxConfirmation max-width="800">
+          <v-dialog
+            v-model=clearBoxConfirmation
+            max-width="800"
+          >
             <v-card class="text-h6">
               <v-card-title prepend-icon="mdi-warning">
                 Clear LocBox
@@ -100,8 +135,17 @@ onMounted(() => {
               </v-card-subtitle>
               <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn text="Close" variant="plain" @click="clearBoxConfirmation = !clearBoxConfirmation"></v-btn>
-                <v-btn color="orange-darken-3" text="clear" variant="tonal" @click=clearBox></v-btn>
+                <v-btn
+                  text="Close"
+                  variant="plain"
+                  @click="clearBoxConfirmation = !clearBoxConfirmation"
+                ></v-btn>
+                <v-btn
+                  color="orange-darken-3"
+                  text="clear"
+                  variant="tonal"
+                  @click=clearBox
+                ></v-btn>
               </v-card-actions>
             </v-card>
           </v-dialog>
@@ -110,13 +154,20 @@ onMounted(() => {
       </statistics-nav-drawer>
 
       <v-main>
-        <home @newFileResponse="calcDiskUsage" @newFolderResponse="calcDiskUsage" :boxCleared=boxCleared />
+        <home
+          @newFileResponse="calcDiskUsage"
+          @newFolderResponse="calcDiskUsage"
+          :boxCleared=boxCleared
+        />
       </v-main>
 
     </v-layout>
   </v-card>
 
-  <v-footer class="d-flex align-center justify-center ga-2 flex-wrap flex-grow-1 py-3 border-t-md" color="default">
+  <v-footer
+    class="d-flex align-center justify-center ga-2 flex-wrap flex-grow-1 py-3 border-t-md"
+    color="default"
+  >
     <h5 class="text-orange-darken-3">
       <v-icon icon="mdi-copyleft" />
       SISLOC SOFTWARES - MATHEUS THIBAU

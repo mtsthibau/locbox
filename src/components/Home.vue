@@ -97,7 +97,7 @@ const flagStarred = (name: string) => {
   const files = JSON.parse(localStorage.getItem('files') || '[]')
   const index = files.filter((file: File, index: number) =>
     file.name === name
-  ).map(item => files.indexOf(item))[0]
+  ).map((item: JSON) => files.indexOf(item))[0]
 
   files[index].starred = !files[index].starred
   localStorage.setItem('files', JSON.stringify(files))
@@ -123,11 +123,19 @@ onMounted(() => {
 </script>
 
 <template>
-  <v-container max-width="1200" fluid>
+  <v-container
+    max-width="1200"
+    fluid
+  >
 
     <v-row v-if="currentFolder == 'root' && hint === true">
       <v-col cols="12">
-        <v-card class="py-3" color="orange-darken-1" rounded="lg" variant="tonal">
+        <v-card
+          class="py-3"
+          color="orange-darken-1"
+          rounded="lg"
+          variant="tonal"
+        >
           <v-card-title class="text-h6 font-weight-bold">
             Upload your files to the Sisloc Cloud Box.
           </v-card-title>
@@ -140,8 +148,14 @@ onMounted(() => {
             </p>
           </v-card-subtitle>
           <v-card-actions>
-            <v-btn class="ma-2" variant="tonal" prepend-icon="mdi-check-circle" color="white" v-model="hint"
-              @click="closeHint"> Understood
+            <v-btn
+              class="ma-2"
+              variant="tonal"
+              prepend-icon="mdi-check-circle"
+              color="white"
+              v-model="hint"
+              @click="closeHint"
+            > Understood
             </v-btn>
           </v-card-actions>
         </v-card>
@@ -150,9 +164,15 @@ onMounted(() => {
 
     <v-row>
       <v-col cols="12">
-        <v-card rounded="lg" variant="tonal">
+        <v-card
+          rounded="lg"
+          variant="tonal"
+        >
           <v-breadcrumbs divider=" / ">
-            <v-breadcrumbs-item @click.native="navigateBreadCrumb(key)" v-for="(item, key) in breadCrumbItens">
+            <v-breadcrumbs-item
+              @click.native="navigateBreadCrumb(key)"
+              v-for="(item, key) in breadCrumbItens"
+            >
               / {{ item }}
             </v-breadcrumbs-item>
           </v-breadcrumbs>
@@ -162,7 +182,13 @@ onMounted(() => {
 
     <v-row>
       <v-col cols="6">
-        <v-card class="py-4" color="surface-variant" rounded="lg" variant="tonal" @click="toggleCreateFolderDialog">
+        <v-card
+          class="py-4"
+          color="surface-variant"
+          rounded="lg"
+          variant="tonal"
+          @click="toggleCreateFolderDialog"
+        >
           <v-card-title class="text-h6 font-weight-bold">
             <v-icon icon="mdi-folder-plus" /> Create new folder
           </v-card-title>
@@ -170,7 +196,13 @@ onMounted(() => {
       </v-col>
 
       <v-col cols="6">
-        <v-card class="py-4" color="surface-variant" rounded="lg" variant="tonal" @click="toggleUploadFileDialog">
+        <v-card
+          class="py-4"
+          color="surface-variant"
+          rounded="lg"
+          variant="tonal"
+          @click="toggleUploadFileDialog"
+        >
           <v-card-title class="text-h6 font-weight-bold">
             <v-icon icon="mdi-upload" /> Upload a new file
           </v-card-title>
@@ -179,37 +211,70 @@ onMounted(() => {
     </v-row>
 
     <v-row>
-      <v-col cols="12" v-if="dataTable.length > 0">
-        <v-data-table class="mb-8" rounded="lg" :items="dataTable" :headers=headers :items-per-page="itemsPerPage"
-          :page.sync="page">
+      <v-col
+        cols="12"
+        v-if="dataTable.length > 0"
+      >
+        <v-data-table
+          class="mb-8"
+          rounded="lg"
+          :items="dataTable"
+          :headers=headers
+          :items-per-page="itemsPerPage"
+          :page.sync="page"
+        >
           <template v-slot:item="{ item }: { item: any }">
             <tr class="text-wrap cursor-pointer">
-              <td v-if="item.type === 'image/png' || item.type === 'image/jpeg'"
-                @click="openItem(item.type, item.name)">
-                <v-img :src="`${filePath}${item.name}`" :width="25" aspect-ratio="16/9" cover />
+              <td
+                v-if="item.type === 'image/png' || item.type === 'image/jpeg'"
+                @click="openItem(item.type, item.name)"
+              >
+                <v-img
+                  :src="`${filePath}${item.name}`"
+                  :width="25"
+                  aspect-ratio="16/9"
+                  cover
+                />
               </td>
-              <td v-else @click="openItem(item.type, item.name)">
+              <td
+                v-else
+                @click="openItem(item.type, item.name)"
+              >
                 <v-icon icon="mdi-folder text-center" />
               </td>
               <td @click="openItem(item.type, item.name)">{{ item.name }}</td>
               <td @click="openItem(item.type, item.name)">{{ item.type }}</td>
               <td @click="openItem(item.type, item.name)">{{ item.size }}</td>
               <td @click="flagStarred(item.name)">
-                <v-icon icon="mdi-star-outline" :color="(item.starred ? 'orange-darken-3' : 'white')"
-                  v-if="item.type !== 'folder'"></v-icon>
+                <v-icon
+                  icon="mdi-star-outline"
+                  :color="(item.starred ? 'orange-darken-3' : 'white')"
+                  v-if="item.type !== 'folder'"
+                ></v-icon>
               </td>
             </tr>
           </template>
           <template v-slot:bottom>
             <div class="text-center pt-2 py-4">
-              <v-pagination v-model="page" :length="pageCount"></v-pagination>
+              <v-pagination
+                v-model="page"
+                :length="pageCount"
+              ></v-pagination>
             </div>
           </template>
         </v-data-table>
       </v-col>
 
-      <v-col cols="12" v-else>
-        <v-card class="py-4" color="surface-variant" rounded="lg" variant="tonal">
+      <v-col
+        cols="12"
+        v-else
+      >
+        <v-card
+          class="py-4"
+          color="surface-variant"
+          rounded="lg"
+          variant="tonal"
+        >
           <v-card-title class="text-h6 font-weight-bold text-center text-orange-darken-3">
             <v-icon icon="mdi-robot-confused" />
             <p>No files or folders found</p>
@@ -222,10 +287,21 @@ onMounted(() => {
     </v-row>
   </v-container>
 
-  <open-file-dialog v-model="showFileDialog" :filePath=currentFile />
-  <new-folder-dialog @newFolderResponse="fetchFolders" v-model="showCreateFolderDialog" title="New folder"
-    :currentFolder=currentFolder />
-  <new-file-dialog @newFileResponse="fetchFiles" v-model="showUploadFileDialog" title="New file"
-    :currentFolder=currentFolder />
+  <open-file-dialog
+    v-model="showFileDialog"
+    :filePath=currentFile
+  />
+  <new-folder-dialog
+    @newFolderResponse="fetchFolders"
+    v-model="showCreateFolderDialog"
+    title="New folder"
+    :currentFolder=currentFolder
+  />
+  <new-file-dialog
+    @newFileResponse="fetchFiles"
+    v-model="showUploadFileDialog"
+    title="New file"
+    :currentFolder=currentFolder
+  />
 
 </template>

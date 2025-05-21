@@ -52,17 +52,36 @@ const newFolder = () => {
 
 <template>
   <div class="text-center">
-    <v-dialog :model-value=modelValue @update:model-value="toggle" max-width="600">
+    <v-dialog
+      :model-value=modelValue
+      @update:model-value="toggle"
+      max-width="600"
+    >
 
-      <v-card prepend-icon="mdi-account" :title=title>
+      <v-card
+        prepend-icon="mdi-account"
+        :title=title
+      >
         <v-card-text>
           <!-- NEW COMPONENT ALERT -->
-          <v-row dense class="py-5" v-if=newFolderError>
+          <v-row
+            dense
+            class="py-5"
+            v-if=newFolderError
+          >
             <v-col cols="12">
-              <v-alert color="warning" icon="$error" type="error" dismissible>
+              <v-alert
+                color="warning"
+                icon="$error"
+                type="error"
+                dismissible
+              >
                 {{ newFolderError }}
                 <template #close>
-                  <v-btn icon @click="newFolderError = ''">
+                  <v-btn
+                    icon
+                    @click="newFolderError = ''"
+                  >
                     <v-icon>mdi-close</v-icon>
                   </v-btn>
                 </template>
@@ -71,7 +90,12 @@ const newFolder = () => {
           </v-row>
           <v-row dense>
             <v-col cols="12">
-              <v-text-field label="Folder name*" required variant="outlined" v-model=folderName></v-text-field>
+              <v-text-field
+                label="Folder name*"
+                required
+                variant="outlined"
+                v-model=folderName
+              ></v-text-field>
             </v-col>
           </v-row>
           <small class="text-orange-darken-3 text-caption">*indicates required field</small>
@@ -79,8 +103,17 @@ const newFolder = () => {
         <v-divider></v-divider>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn text="Close" variant="plain" @click="toggle(false)"></v-btn>
-          <v-btn color="orange-darken-3" text="Save" variant="tonal" @click=newFolder></v-btn>
+          <v-btn
+            text="Close"
+            variant="plain"
+            @click="toggle(false)"
+          ></v-btn>
+          <v-btn
+            color="orange-darken-3"
+            text="Save"
+            variant="tonal"
+            @click=newFolder
+          ></v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
